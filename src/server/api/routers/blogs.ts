@@ -8,6 +8,19 @@ import { db } from "~/server/db";
 import SCHEMA from "~/server/db/schema";
 
 export const blogsRouter = createTRPCRouter({
+  listBlogs: protectedProcedure.query(async ({ ctx }) => {
+    const userId = ctx.userId;
+    const blogs = await db.query.blogs.findMany({
+      where: (blog, {eq}) => eq(blog.userId, userId),
+      columns: {
+        webhookUrl: false,
+        webhookSecret: false
+      }
+    })
+
+    return blogs
+  }),
+
   link: protectedProcedure
     .input(linkBlogFormSchema)
     .mutation(async ({ ctx, input }) => {

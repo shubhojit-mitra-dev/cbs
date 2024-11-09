@@ -13,7 +13,7 @@ CBS (Content Builder for SocialMedia) is a platform designed to enhance content 
 
 ## Key Features  
 1. **Content Integration**:
-   - Users can link blog platforms (such as WordPress, Medium) and YouTube channels.
+   - Users can link blog platforms (such as Hashnode, Medium, and Dev.to) and YouTube channels.
    - Automatic detection of new content uploads/posts on linked platforms.
 
 2. **AI-Driven Post Generation**:

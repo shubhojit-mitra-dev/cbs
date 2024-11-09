@@ -26,7 +26,7 @@ const data = {
       isActive: true,
       items: [
         { title: "Overview", url: "/dashboard", isActive: false },
-        { title: "Content Platforms", url: "/dashboard/content-platforms", isActive: false },
+        { title: "My Blogs", url: "/dashboard/my-blogs", isActive: false },
         { title: "Social Accounts", url: "/dashboard/social-accounts", isActive: false },
         { title: "Queue", url: "/dashboard/queue", isActive: false },
       ],

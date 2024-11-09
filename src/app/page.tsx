@@ -1,9 +1,8 @@
 import Link from "next/link";
 import { Button } from "~/components/ui/button";
 import { HydrateClient } from "~/trpc/server";
-
-import { Card } from "~/components/homepage/card";
-import { Badge } from "~/components/homepage/badge";
+import { Card } from "~/components/ui/card";
+import { Badge } from "~/components/ui/badge";
 import { Brain, Youtube, Twitter, Linkedin, Facebook, BarChart3, Lock, Zap } from "lucide-react";
 import Image from "next/image";
 import laptopImage from "~/assets/laptop-with-some-data.avif"
@@ -26,8 +25,8 @@ export default async function Home() {
               Transform your long-form content into engaging social media posts automatically using AI-powered technology
             </p>
             <div className="flex gap-4">
-              <Button size="lg">
-                Get Started
+              <Button size="lg" asChild>
+                <Link href="api/auth/login">Get Started</Link>
               </Button>
               {/* <Button size="lg" variant="outline">
                 Watch Demo

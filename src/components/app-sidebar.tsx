@@ -15,18 +15,20 @@ import {
   SidebarRail,
 } from "~/components/ui/sidebar"
 
+import Link from "next/link"
+
 
 const data = {
   navMain: [
     {
-      title: "Getting Started",
+      title: "My Dashboard",
       urls: "#",
-      isActive: false,
+      isActive: true,
       items: [
-        { title: "Installation", url: "#" },
-        { title: "Configuration", url: "#" },
-        { title: "Directory Structure", url: "#" },
-        { title: "Release Notes", url: "#" },
+        { title: "Overview", url: "/dashboard", isActive: false },
+        { title: "Content Platforms", url: "/dashboard/content-platforms", isActive: false },
+        { title: "Social Accounts", url: "/dashboard/social-accounts", isActive: false },
+        { title: "Queue", url: "/dashboard/queue", isActive: false },
       ],
     }
     
@@ -41,7 +43,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           versions={data.versions}
           defaultVersion={data.versions[0]}
         /> */}
-        <a href="#" className="text-lg font-bold m-auto border-2 rounded-full ">LOGO</a>
+        <a href="#" className="text-lg font-bold m-auto border-2 rounded-full mt-5 mb-5 p-5">LOGO</a>
         {/* <SearchForm /> */}
       </SidebarHeader>
       <SidebarContent>
@@ -53,7 +55,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 {item.items.map((item) => (
                   <SidebarMenuItem key={item.title}>
                     <SidebarMenuButton asChild isActive={item.isActive}>
-                      <a href={item.url}>{item.title}</a>
+                      <Link className="mt-2" href={item.url}>{item.title}</Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 ))}

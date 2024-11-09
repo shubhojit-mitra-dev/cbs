@@ -27,11 +27,11 @@ export default async function Home() {
             </p>
             <div className="flex gap-4">
               <Button size="lg">
-                Get Started Free
+                Get Started
               </Button>
-              <Button size="lg" variant="outline">
+              {/* <Button size="lg" variant="outline">
                 Watch Demo
-              </Button>
+              </Button> */}
             </div>
             
             {/* Platform Icons */}
@@ -51,7 +51,7 @@ export default async function Home() {
           <h2 className="text-3xl font-bold text-center mb-12">
             Powerful Features for Content Creators
           </h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 gap-8">
             <Card className="p-6 hover:shadow-lg transition-shadow">
               <Brain className="w-12 h-12 mb-4 text-primary" />
               <h3 className="text-xl font-semibold mb-2">AI-Powered Summaries</h3>
@@ -66,13 +66,13 @@ export default async function Home() {
                 Schedule and post content across multiple platforms automatically
               </p>
             </Card>
-            <Card className="p-6 hover:shadow-lg transition-shadow">
+            {/* <Card className="p-6 hover:shadow-lg transition-shadow">
               <BarChart3 className="w-12 h-12 mb-4 text-primary" />
               <h3 className="text-xl font-semibold mb-2">Analytics Dashboard</h3>
               <p className="text-muted-foreground">
                 Track engagement and optimize your content strategy with detailed insights
               </p>
-            </Card>
+            </Card> */}
           </div>
         </div>
       </section>
@@ -203,7 +203,7 @@ export default async function Home() {
             Join thousands of content creators who are already using CBS to amplify their social media presence
           </p>
           <Button size="lg" variant="secondary">
-            Start Your Free Trial
+            Get Started Now
           </Button>
         </div>
       </section>

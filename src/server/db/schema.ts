@@ -1,4 +1,4 @@
-import { pgTableCreator, text, timestamp, boolean, jsonb, integer } from "drizzle-orm/pg-core";
+import { jsonb, pgTableCreator, text, timestamp, varchar } from "drizzle-orm/pg-core";
 
 export const createTable = pgTableCreator((name) => `cbs_${name}`);
 
@@ -6,16 +6,17 @@ const createdAt = timestamp("created_at").notNull().defaultNow();
 const updatedAt = timestamp("updated_at").notNull().defaultNow().$onUpdate(() => new Date());
 
 // Content Platforms table (blogs, YouTube channels)
-export const contentPlatforms = createTable('content_platforms', {
-  id: integer('id').primaryKey(),
+export const blogs = createTable('blogs', {
+  id: varchar('id').primaryKey(),
   userId: text('user_id').notNull(), // Auth0 user ID
-  platformName: text('platform_name').notNull(), // 'medium', 'hashnode', 'youtube', etc.
+  platformName: text('platform_name').notNull(), // 'medium', 'hashnode', etc.
 
-  webhookSecret: text('webhook_secret'), // For webhook verification
+  blogName: text("blog_name").notNull(),
+  blogUrl: text("blog_url").notNull(),
+  webhookSecret: text('webhook_secret').notNull(), // For webhook verification
   webhookUrl: text('webhook_url'), // Configured webhook URL
   integrationConfig: jsonb('integration_config'), // Platform-specific settings
   
-  // autoPost: boolean('auto_post').notNull().default(true),
   createdAt,
   updatedAt,
 });
@@ -101,7 +102,7 @@ export const contentPlatforms = createTable('content_platforms', {
 // });
 
 const SCHEMA = {
-  contentPlatforms
+  blogs
 };
 
 export default SCHEMA;

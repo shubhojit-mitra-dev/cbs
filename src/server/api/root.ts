@@ -1,5 +1,5 @@
 import { createCallerFactory, createTRPCRouter } from "~/server/api/trpc";
-import { contentPlatformsRouter } from "./routers/content-platforms";
+import { blogsRouter } from "./routers/blogs";
 
 /**
  * This is the primary router for your server.
@@ -7,7 +7,7 @@ import { contentPlatformsRouter } from "./routers/content-platforms";
  * All routers added in /api/routers should be manually added here.
  */
 export const appRouter = createTRPCRouter({
-  contentPlatformsRouter,
+  blogs: blogsRouter,
 });
 
 // export type definition of API

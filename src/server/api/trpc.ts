@@ -27,7 +27,7 @@ export const createTRPCContext = async (opts: { headers: Headers }) => {
   const session = await getSession();
 
   return {
-    session,
+    user: session?.user ?? {},
     ...opts,
   };
 };
@@ -117,10 +117,10 @@ export const publicProcedure = t.procedure.use(timingMiddleware);
 export const protectedProcedure = t.procedure
   .use(timingMiddleware)
   .use(({ ctx, next }) => {
-    if (!ctx.session || !ctx.session.user) {
+    if (!ctx.user || !ctx.user.sub) {
       throw new TRPCError({ code: "UNAUTHORIZED" });
     }
     return next({
-      ctx,
+      ctx: {...ctx, userId: ctx.user.sub as string,}
     });
   });

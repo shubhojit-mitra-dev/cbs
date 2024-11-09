@@ -4,6 +4,7 @@ import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
 
 import Providers from "./Providers";
+import { Toaster } from "~/components/ui/sonner";
 
 export const metadata: Metadata = {
   title: "CBS - Content Builder for SocialMedia",
@@ -20,6 +21,7 @@ export default function RootLayout({
         <Providers>
           {children}
         </Providers>
+        <Toaster richColors />
       </body>
     </html>
   );

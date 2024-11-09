@@ -9,7 +9,7 @@ export default async function AddHashnodeAccount() {
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-6">Link your Hashnode Account</h1>
-      
+
       <Card className="mb-8">
         <CardHeader>
           <CardTitle>Instructions</CardTitle>
@@ -29,8 +29,8 @@ export default async function AddHashnodeAccount() {
           </ol>
         </CardContent>
       </Card>
-      <LinkBlogForm />
-      
+      <LinkBlogForm webhookUrl={webhookurl} />
+
     </div>
   )
 }

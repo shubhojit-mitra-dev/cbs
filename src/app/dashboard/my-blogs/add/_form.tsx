@@ -1,25 +1,45 @@
 'use client'
 
+import { Loader2 } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
+import { toast } from 'sonner'
 import { Button } from '~/components/ui/button'
 import { Input } from '~/components/ui/input'
 import { Label } from '~/components/ui/label'
+import { api } from '~/trpc/react'
 
-const LinkBlogForm = () => {
+const LinkBlogForm = ({ webhookUrl }: { webhookUrl: string }) => {
+  const router = useRouter();
 
   const [blogName, setBlogName] = useState('')
   const [blogUrl, setBlogUrl] = useState('')
   const [webhookSecret, setWebhookSecret] = useState('')
 
+  const linkBlogMutation = api.blogs.link.useMutation({
+    onSuccess: (message) => {
+      toast.success(message)
+      router.push('/dashboard/my-blogs')
+    },
+    onError: (err) => {
+      toast.error(err.message)
+    }
+  })
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle form submission here
-    console.log('Form submitted', { blogName, blogUrl, webhookSecret })
+
+    linkBlogMutation.mutate({
+      blogName,
+      blogUrl,
+      webhookSecret,
+      webhookUrl
+    })
   }
 
   return (
     <div>
-        <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-6">
         <div className="space-y-2">
           <Label htmlFor="blogUrl">Blog Name</Label>
           <Input
@@ -59,7 +79,9 @@ const LinkBlogForm = () => {
           </p>
         </div>
 
-        <Button type="submit">Link Account</Button>
+        <Button type="submit" disabled={linkBlogMutation.isPending}>
+          {linkBlogMutation.isPending && <Loader2 className="w-5 h-5 mr-2 animate-spin" />}
+          Link Account</Button>
       </form>
     </div>
   )

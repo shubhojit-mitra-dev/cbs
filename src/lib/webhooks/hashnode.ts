@@ -4,7 +4,7 @@ import crypto from 'crypto';
 export function generateWebhookUrl(userId: string, blogId: string): string {
   const webhookPath = `/api/webhooks/hashnode/${userId}/${blogId}`;
   // In production, use your actual domain
-  return `${env.NEXT_PUBLIC_BASE_URL}/${webhookPath}`;
+  return `${env.NEXT_PUBLIC_BASE_URL}${webhookPath}`;
 }
 
 // Verify webhook signature from Hashnode

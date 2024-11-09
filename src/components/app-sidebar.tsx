@@ -16,6 +16,8 @@ import {
 } from "~/components/ui/sidebar"
 
 import Link from "next/link"
+import Image from "next/image"
+import cbsLogo from "~/assets/cbs-logo.png"
 
 
 const data = {
@@ -43,7 +45,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           versions={data.versions}
           defaultVersion={data.versions[0]}
         /> */}
-        <a href="#" className="text-lg font-bold m-auto border-2 rounded-full mt-5 mb-5 p-5">LOGO</a>
+        <a href="#" className="">
+          <Image src={cbsLogo} alt="CBS" className="w-32 h-32 m-auto" />
+        </a>
         {/* <SearchForm /> */}
       </SidebarHeader>
       <SidebarContent>

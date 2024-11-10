@@ -4,8 +4,11 @@ import { db } from '~/server/db';
 
 export async function POST(
   req: NextRequest,
-  { params }: { params: { userId: string; platformId: string } }
+  { params }: { params: Promise<{ userId: string; platformId: string }> }
 ) {
+  const platformId = (await params).platformId
+  const userId = (await params).userId
+
   try {
     // Get the webhook signature from headers
     const signature = req.headers.get('x-hashnode-signature');
@@ -18,10 +21,10 @@ export async function POST(
 
     // Get the platform details from the database
     const platform = await db.query.blogs.findFirst({
-        where: (blog, {eq}) => eq(blog.id, params.platformId),
+        where: (blog, {eq}) => eq(blog.id, platformId),
     });
 
-    if (!platform || platform.userId !== params.userId) {
+    if (!platform || platform.userId !== userId) {
       return NextResponse.json(
         { error: 'Platform not found' },
         { status: 404 }

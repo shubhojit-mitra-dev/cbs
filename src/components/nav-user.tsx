@@ -34,6 +34,7 @@ import {
 } from "~/components/ui/sidebar"
 
 import { Skeleton } from "./ui/skeleton"
+import Link from "next/link"
 
 
 export function NavUser() {
@@ -109,9 +110,11 @@ export function NavUser() {
               </DropdownMenuItem>
             </DropdownMenuGroup> */}
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              <LogOut />
-              Log out
+            <DropdownMenuItem asChild>
+              <Link href="/api/auth/logout">
+                <LogOut />
+                Log out
+              </Link>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

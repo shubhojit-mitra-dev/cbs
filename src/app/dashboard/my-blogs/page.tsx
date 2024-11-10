@@ -4,6 +4,7 @@ import { Card, CardContent } from "~/components/ui/card"
 import { Button } from "~/components/ui/button"
 import hashnodeLogo from "~/assets/hashnode.svg"
 import Image from 'next/image'
+import { api } from '~/trpc/server'
 
 interface Blog {
   id: string
@@ -11,12 +12,14 @@ interface Blog {
   url: string
 }
 
-export default function MyBlogs() {
+export default async function MyBlogs() {
   // This would typically come from an API or state management
-  const blogs: Blog[] = [
-    { id: "1", name: "My Tech Blog", url: "https://mytechblog.hashnode.dev" },
-    { id: "2", name: "Web Dev Insights", url: "https://webdevinsights.hashnode.dev" },
-  ]
+  // const blogs: Blog[] = [
+  //   { id: "1", name: "My Tech Blog", url: "https://mytechblog.hashnode.dev" },
+  //   { id: "2", name: "Web Dev Insights", url: "https://webdevinsights.hashnode.dev" },
+  // ]
+
+  const blogs = await api.blogs.listBlogs()
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -41,11 +44,11 @@ export default function MyBlogs() {
                   alt="Hashnode Logo" 
                   className="w-6 h-6 mr-2"
                 />
-                <h2 className="text-xl font-semibold">{blog.name}</h2>
+                <h2 className="text-xl font-semibold">{blog.blogName}</h2>
               </div>
-              <p className="text-gray-600 mb-4 flex-grow">{blog.url}</p>
+              <p className="text-gray-600 mb-4 flex-grow">{blog.blogUrl}</p>
               <div className="flex justify-between items-center">
-                <Link href={blog.url} passHref>
+                <Link href={blog.blogUrl} passHref>
                   <Button size="sm">Visit Blog</Button>
                 </Link>
                 {/* <Link href={`/dashboard/content-platforms/${blog.id}`} passHref>

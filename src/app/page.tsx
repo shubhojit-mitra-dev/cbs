@@ -7,6 +7,7 @@ import { Brain, Youtube, Twitter, Linkedin, Facebook, BarChart3, Lock, Zap } fro
 import Image from "next/image";
 import laptopImage from "~/assets/laptop-with-some-data.avif"
 import cbsLogo from "~/assets/cbs-logo.png"
+import { AuthState } from "~/components/homepage/authState";
 
 export default async function Home() {
   return (
@@ -21,11 +22,7 @@ export default async function Home() {
               <Image src={cbsLogo} alt="CBS" width={449} height={212} className="m-auto max-w-24" />
             </Link>
             <div>
-              <Button asChild>
-                <Link href="/api/auth/login">
-                  Get Started
-                </Link>
-              </Button>
+              <AuthState />
             </div>
           </div>
 
